@@ -5,8 +5,8 @@ import uiautomator2 as u2
 from time import sleep
 
 CONNECT_METHOD = '4d986a30'                       # 连接设备，也支持IP '192.168.1.166'
-APP_NAME = 'com.rongzi.creditmanager'
-INSTALL_PATH = "http://10.40.4.200/bao/rgj_"      # 路径不能带中文
+APP_NAME = 'com.xxx.yyy'
+INSTALL_PATH = "http://10.40.4.200/bao/zzz_"      # 路径不能带中文
 VERSION = '443'                                   # APP版本号
 qudaos = ['aliyingyong', 'anzhuoshichang', 'baiduzhushou', 'dongfangrongziwang', 'huawei', 'm360zhushou',
               'm91zhushou', 'oppo', 'vivo', 'wandoujia', 'xiaomishangdian', 'yingyongbao']
@@ -44,26 +44,26 @@ def del_file(path):
 
 def init_file():
     """ 初始化 """
-    if os.path.exists('./rgj'):
-        del_file('./rgj')
+    if os.path.exists('./output'):
+        del_file('./output')
     else:
-        os.mkdir('./rgj')
+        os.mkdir('./output')
 
 
 def get_screen(qudao):
     """ 截图并保存 """
-    u.screenshot("./rgj/"+qudao+".jpg")
+    u.screenshot("./output/"+qudao+".jpg")
     logger.info('end test qudaobao: '+qudao)
 
 
-def rgj_login():
-    """ 登录融管家 """
+def app_login():
+    """ 登录APP """
     # u.app_clear(APP_NAME)
     u.app_start(APP_NAME)
     u(resourceId=APP_NAME+":id/guide_Login").click()
     # u(resourceId=APP_NAME + ":id/" + "main_tab_user_name").click()
     # u(resourceId=APP_NAME + ":id/" + "btn_tab_fragment_user_login_register").click()
-    u(resourceId=APP_NAME + ":id/" + "user_phone").send_keys("13917795979")
+    u(resourceId=APP_NAME + ":id/" + "user_phone").send_keys("13912345678")
     u(resourceId=APP_NAME + ":id/" + "user_pwd").send_keys("Aa123456")
     u(resourceId=APP_NAME + ":id/" + "login").click()
     logger.info('login over!')
@@ -73,7 +73,7 @@ def loggers():
     """ 日志管理 """
     log = logging.getLogger('mewlogger')
     log.setLevel(logging.DEBUG)
-    fh = logging.FileHandler('./rgj/test.log')  # 日志文件
+    fh = logging.FileHandler('./output/test.log')  # 日志文件
     ch = logging.StreamHandler()
     # fh.setLevel(logging.DEBUG)
     formatter = logging.Formatter('[%(asctime)s][%(thread)d][%(filename)s][%(levelname)s] ### %(message)s')
@@ -91,7 +91,7 @@ def main():
         try:
             print(url)
             install_bao(url)                # 安装apk
-            rgj_login()                     # 登录融管家
+            app_login()                     # 登录融管家
             sleep(5)                        # 首页数据加载比较慢，等待5秒
             get_screen(qudao)               # 截图
         except:

@@ -1,0 +1,4 @@
+#ignore these files
+*.dll
+uiautomator2/*
+uiautomator2/
