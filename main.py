@@ -91,7 +91,7 @@ def main():
         try:
             print(url)
             install_bao(url)                # 安装apk
-            app_login()                     # 登录融管家
+            app_login()                     # 登录app
             sleep(5)                        # 首页数据加载比较慢，等待5秒
             get_screen(qudao)               # 截图
         except:
