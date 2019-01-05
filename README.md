@@ -1,7 +1,7 @@
 # RegressionAPP
 - 自动化回归APP渠道包
 - 通过uiautomator2支持WIFI或数据线连接
-- APP安装包必须通过远程服务器，不支持本地安装
+- APP必须通过远程服务器安装，不支持本地安装
 
 ## 依赖：
 ```
